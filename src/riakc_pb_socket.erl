@@ -951,8 +951,9 @@ get_options([{if_modified, VClock} | Rest], Req) ->
 get_options([head | Rest], Req) ->
     get_options(Rest, Req#rpbgetreq{head = true});
 get_options([deletedvclock | Rest], Req) ->
-    get_options(Rest, Req#rpbgetreq{deletedvclock = true}).
-
+    get_options(Rest, Req#rpbgetreq{deletedvclock = true});
+get_options([{req_version, RV} | Rest], Req) ->
+    get_options(Rest, Req#rpbgetreq{req_version = RV}).
 
 put_options([], Req) ->
     Req;
